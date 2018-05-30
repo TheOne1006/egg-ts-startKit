@@ -6,6 +6,18 @@ const plugin: EggPlugin = {
   //   enable: true,
   //   package: 'egg-view-nunjucks',
   // },
+  sequelize: {
+    enable: true,
+    package: 'egg-sequelize',
+  },
+  connectorRemote: {
+    enable: true,
+    package: 'egg-connector-remote',
+  },
+  swagger: {
+    enable: true,
+    package: 'egg-swagger',
+  },
 };
 
 export default plugin;

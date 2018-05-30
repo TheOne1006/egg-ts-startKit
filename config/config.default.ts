@@ -6,9 +6,19 @@ export type DefaultConfig = PowerPartial<EggAppConfig & BizConfig>;
 // app special config scheme
 export interface BizConfig {
   sourceUrl: string;
+  sequelize: {
+    dialect: string;
+    database: string;
+    storage: string;
+    host: string;
+    port: string;
+    username: string;
+    password: string;
+  };
 }
 
 export default (appInfo: EggAppInfo) => {
+  console.log('in default');
   const config = {} as PowerPartial<EggAppConfig> & BizConfig;
 
   // app special config
@@ -19,7 +29,9 @@ export default (appInfo: EggAppInfo) => {
   config.keys = appInfo.name + '_1527687360868_6554';
 
   // add your config here
-  config.middleware = [];
+  config.middleware = [
+    'swagger',
+  ];
 
   return config;
 };
