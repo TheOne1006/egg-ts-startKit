@@ -7,4 +7,5 @@ export default (app: Application) => {
   router.get('/swagger.json', controller.home.swagger);
 
   app.registerRemote(app.model.Admin);
+  app.registerRemote(app.model.AccessToken);
 };

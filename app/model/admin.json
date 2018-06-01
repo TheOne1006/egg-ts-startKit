@@ -1,5 +1,6 @@
 {
     "settings": {
+        "plural": "admins",
         "description": "管理员",
         "hidden": [
             "password",
@@ -70,12 +71,7 @@
             "http": {
                 "verb": "post",
                 "path": "/login"
-            },
-            "security": [
-                {
-                    "api_key": []
-                }
-            ]
+            }
         },
         "owner": {
             "summary": "用户自己的信息",
@@ -187,6 +183,7 @@
         }
     },
     "disabledRemotes": [
+        "destroyById",
         "destroy",
         "updateAll"
     ]

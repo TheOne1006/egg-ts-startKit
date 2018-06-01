@@ -1,5 +1,9 @@
 import Sequelize from 'sequelize';
 
+declare module "*.json" {
+  const value: any;
+  export default value;
+}
 declare module 'egg' {
     // 扩展 app
     interface Application {

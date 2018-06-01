@@ -18,9 +18,13 @@ export interface BizConfig {
 }
 
 export default (appInfo: EggAppInfo) => {
-  console.log('in default');
   const config = {} as PowerPartial<EggAppConfig> & BizConfig;
 
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+  };
   // app special config
   config.sourceUrl = `https://github.com/eggjs/examples/tree/master/${appInfo.name}`;
 

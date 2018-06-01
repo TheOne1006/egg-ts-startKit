@@ -1,7 +1,7 @@
 import { DefaultConfig } from './config.default';
 
 export default () => {
-  console.log('in local');
+  // console.log('in local');
   const config: DefaultConfig = {
     logger: {
       level: 'DEBUG',
