@@ -34,6 +34,7 @@ export default (appInfo: EggAppInfo) => {
 
   // add your config here
   config.middleware = [
+    'graphql',
     'swagger',
   ];
 

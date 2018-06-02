@@ -18,6 +18,10 @@ const plugin: EggPlugin = {
     enable: true,
     package: 'egg-swagger',
   },
+  graphql: {
+    enable: true,
+    package: 'egg-graphql',
+  },
 };
 
 export default plugin;
