@@ -5,6 +5,7 @@ import AccessToken from '../../../app/model/access-token';
 import Admin from '../../../app/model/admin';
 import RoleMapping from '../../../app/model/role-mapping';
 import Role from '../../../app/model/role';
+import User from '../../../app/model/user';
 
 declare module 'sequelize' {
   interface Sequelize {
@@ -12,5 +13,6 @@ declare module 'sequelize' {
     Admin: ReturnType<typeof Admin>;
     RoleMapping: ReturnType<typeof RoleMapping>;
     Role: ReturnType<typeof Role>;
+    User: ReturnType<typeof User>;
   }
 }

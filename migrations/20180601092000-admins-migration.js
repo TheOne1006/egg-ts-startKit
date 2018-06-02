@@ -7,8 +7,8 @@ module.exports = {
     await queryInterface.createTable('admins', {
       id: { type: INTEGER, primaryKey: true, autoIncrement: true },
       username: { type: STRING, allowNull: false },
-      password: { type: STRING, allowNull: false },
-      email: { type: STRING, allowNull: false },
+      password: { type: STRING, allowNull: true },
+      email: { type: STRING, allowNull: true },
       lastSignInAt: DATE,
       createdAt: DATE,
       updatedAt: DATE,

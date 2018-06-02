@@ -9,7 +9,7 @@
   "scripts": {
     "start": "egg-scripts start --daemon --title=egg-server-showcase",
     "stop": "egg-scripts stop --title=egg-server-showcase",
-    "dev": "egg-bin dev -r egg-ts-helper/register",
+    "dev": "DEBUG='egg-connector-remote:accessContext:acl' egg-bin dev -r egg-ts-helper/register",
     "debug": "egg-bin debug -r egg-ts-helper/register",
     "test-local": "egg-bin test -r egg-ts-helper/register",
     "test": "npm run lint -- --fix && npm run test-local",
@@ -37,13 +37,13 @@
     "uuid": "^3.2.1"
   },
   "devDependencies": {
-    "@types/uuid": "^3.4.3",
     "@types/bcryptjs": "^2.4.1",
     "@types/debug": "^0.0.30",
     "@types/mocha": "^2.2.40",
     "@types/node": "^7.0.12",
     "@types/sequelize": "^4.27.20",
     "@types/supertest": "^2.0.0",
+    "@types/uuid": "^3.4.3",
     "autod": "^3.0.1",
     "autod-egg": "^1.1.0",
     "egg-bin": "^4.6.2",

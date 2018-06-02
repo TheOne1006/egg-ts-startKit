@@ -70,24 +70,25 @@ export default function Role(app: Application) {
   /**
    * 判断是否存在该角色中
    */
-  modelSchema.isInRole = async function isInRole(ctx, acl, rule, _: any, model, modelId) {
+  modelSchema.isInRole = async function isInRole(ctx, acl, rule, curAcl, model, modelId) {
     const AccessToken = app.model.AccessToken;
     const token = AccessToken.tokenIdForRequest(ctx);
 
     let matchUserIdOrAdminId = 0;
-    // let roleScope = AccessToken.ScopeUser;
+    let roleScope = '';
 
     if (token) {
       const tokenInstance = await AccessToken.findOne({
         where: { token },
       });
-      if (tokenInstance && tokenInstance.userId && tokenInstance.scope === AccessToken.ScopeUser) {
+      if (tokenInstance && tokenInstance.userId && acl.principalId === AccessToken.ScopeUser && tokenInstance.scope === AccessToken.ScopeUser) {
         matchUserIdOrAdminId = tokenInstance.userId;
+        roleScope = AccessToken.ScopeUser;
       }
 
       if (tokenInstance && tokenInstance.adminId && tokenInstance.scope === AccessToken.ScopeAdmin) {
         matchUserIdOrAdminId = tokenInstance.adminId;
-        // roleScope = AccessToken.ScopeAdmin;
+        roleScope = AccessToken.ScopeAdmin;
       }
     }
 
@@ -95,6 +96,7 @@ export default function Role(app: Application) {
 
     logger('inSystem %s', inSystem);
     logger('current acl %o', acl);
+    logger('current curAcl %o', curAcl);
     logger('current rule %o', rule);
 
     if (inSystem) {
@@ -106,18 +108,37 @@ export default function Role(app: Application) {
     // 自定义 role
     let isMatch = false;
 
-    try {
-      const roleInstance = await modelSchema.findOne({ where: {
-        name: rule.principalId,
-      } });
-      const roleMapping = await app.model.RoleMapping.findOne({ where: {
-        roleId: roleInstance.id,
-        principalId: matchUserIdOrAdminId,
-      } });
-      isMatch = roleInstance && roleMapping;
-    } catch (e) {
-      isMatch = false;
+    if (roleScope == AccessToken.ScopeUser) {
+      const roleInstance = await modelSchema.findOne({
+        where: {
+          name: rule.principalId,
+        }
+      });
+
+      isMatch = !!roleInstance;
+
+    } else {
+      try {
+        const roleInstance = await modelSchema.findOne({ where: {
+          name: rule.principalId,
+        } });
+        const roleMapperWhwer: any = {
+          roleId: roleInstance.id,
+          principalId: matchUserIdOrAdminId,
+        };
+
+        if (roleScope) {
+          roleMapperWhwer.principalType = roleScope;
+        }
+        const roleMapping = await app.model.RoleMapping.findOne({ where: roleMapperWhwer });
+        logger('roleInstance is %o', roleInstance);
+        logger('roleMapping is %o', roleMapping);
+        isMatch = roleInstance && roleMapping;
+      } catch (e) {
+        isMatch = false;
+      }
     }
+
 
     logger('custom role isMatch: %s', isMatch);
 

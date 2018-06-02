@@ -12,4 +12,12 @@ export default class HomeController extends Controller {
     const { ctx, app } = this;
     ctx.body = app.swagger;
   }
+  public async test() {
+    const { ctx } = this;
+    ctx.body = { test: 1};
+  }
+  public async test2() {
+    const { ctx } = this;
+    ctx.body = { test: 2};
+  }
 }

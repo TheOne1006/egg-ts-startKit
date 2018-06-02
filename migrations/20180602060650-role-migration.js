@@ -34,6 +34,13 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
       version: 0,
+    }, {
+      id: 4,
+      name: 'user',
+      description: '普通用户',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      version: 0,
     }]);
 
     // 键值唯一

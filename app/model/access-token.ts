@@ -43,8 +43,9 @@ export default function AccessToken(app: Application) {
     accessTokenConfig,
   );
 
-  modelSchema.ScopeAdmin = 'ADMIN';
-  modelSchema.ScopeUser = 'User';
+  // 等同 rule 的 name
+  modelSchema.ScopeAdmin = 'admin';
+  modelSchema.ScopeUser = 'user';
 
   modelSchema.createAccessTokenId = async function createAccessTokenId() {
     const tokenStr = uuid();

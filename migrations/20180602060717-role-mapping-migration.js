@@ -16,7 +16,7 @@ module.exports = {
 
     await queryInterface.bulkInsert('RoleMappings', [{
       id: 1,
-      principalType: 'ADMIN',
+      principalType: 'admin',
       principalId: 1,
       roleId: 1,
       createdAt: new Date(),
@@ -24,7 +24,7 @@ module.exports = {
       version: 0,
     }, {
       id: 2,
-      principalType: 'ADMIN',
+      principalType: 'admin',
       principalId: 3,
       roleId: 2,
       createdAt: new Date(),
@@ -32,7 +32,7 @@ module.exports = {
       version: 0,
     }, {
       id: 3,
-      principalType: 'ADMIN',
+      principalType: 'admin',
       principalId: 4,
       roleId: 3,
       createdAt: new Date(),
