@@ -20,13 +20,20 @@ module.exports = {
       userId: {
         type: INTEGER,
       },
+      adminId: {
+        type: INTEGER,
+      },
+      scope: {          // 用户 类型/ 管理员类型
+        type: STRING,
+        allowNull: false,
+      },
       ttl: {
         type: INTEGER,
         defulat: 1209600,
       },
       createdAt: DATE,
       updatedAt: DATE,
-      deletedAt: DATE,
+      version: INTEGER,
     });
 
     await queryInterface.addIndex('accessTokens', ['userId']);

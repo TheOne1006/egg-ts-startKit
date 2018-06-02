@@ -25,7 +25,6 @@
     "migrate:rest": "egg-sequelize db:migrate:undo:all && egg-sequelize db:migrate"
   },
   "dependencies": {
-    "@types/uuid": "^3.4.3",
     "bcryptjs": "^2.4.3",
     "egg": "^2.6.1",
     "egg-connector-remote": "^1.0.6",
@@ -38,6 +37,7 @@
     "uuid": "^3.2.1"
   },
   "devDependencies": {
+    "@types/uuid": "^3.4.3",
     "@types/bcryptjs": "^2.4.1",
     "@types/debug": "^0.0.30",
     "@types/mocha": "^2.2.40",

@@ -26,7 +26,7 @@ export default () => {
       },
       registerRemote: true,
       accessRemote: {
-        enable: false,
+        enable: true,
         getMatchFunc: app => app.model.Role.isInRole,
       },
     },

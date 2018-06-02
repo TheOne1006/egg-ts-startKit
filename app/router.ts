@@ -8,4 +8,6 @@ export default (app: Application) => {
 
   app.registerRemote(app.model.Admin);
   app.registerRemote(app.model.AccessToken);
+  app.registerRemote(app.model.Role);
+  app.registerRemote(app.model.RoleMapping);
 };

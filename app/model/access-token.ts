@@ -8,9 +8,9 @@ import BaseModel from '../common/BaseModel';
 
 const accessTokenConfig = require('./access-token.json');
 
-// const logger = debug('app:model:admin');
+// const logger = debug('app:model:AccessToken');
 
-export default function Admin(app: Application) {
+export default function AccessToken(app: Application) {
   const { STRING, INTEGER } = app.Sequelize;
 
   // 创建模型
@@ -21,6 +21,13 @@ export default function Admin(app: Application) {
     },
     userId: {
       type: INTEGER,
+    },
+    adminId: {
+      type: INTEGER,
+    },
+    scope: {          // 用户 类型/ 管理员类型
+      type: STRING,
+      allowNull: false,
     },
     ttl: {
       type: INTEGER,
@@ -35,6 +42,9 @@ export default function Admin(app: Application) {
     },
     accessTokenConfig,
   );
+
+  modelSchema.ScopeAdmin = 'ADMIN';
+  modelSchema.ScopeUser = 'User';
 
   modelSchema.createAccessTokenId = async function createAccessTokenId() {
     const tokenStr = uuid();

@@ -27,7 +27,7 @@ export default function BaseModel(
     disabledRemotes: string[] | undefined,
   },
 ) {
-  const { Op, INTEGER } = app.Sequelize;
+  const { Op, INTEGER, DATE } = app.Sequelize;
 
   // 设置默认数据
   const modelSchema = app.model.define(table, {
@@ -37,9 +37,14 @@ export default function BaseModel(
       primaryKey: true,
       unique: true,
     },
+    createdAt: DATE,
+    updatedAt: DATE,
+    version: INTEGER,
     ...attributes,
     ...getDefaultAttributes(options, app.Sequelize),
   }, {
+      // 关闭软删除
+      paranoid: false,
       // 自动维护时间戳 [ created_at、updated_at ]
       timestamps: true,
       // 使用驼峰样式自动添加属性
@@ -47,6 +52,8 @@ export default function BaseModel(
       // 禁止修改表名，默认情况下，sequelize将自动将所有传递的模型名称（define的第一个参数）转换为复数
       // 但是为了安全着想，复数的转换可能会发生变化，所以禁止该行为
       freezeTableName: false,
+      // 开启版本管理
+      version: true,
       ...options,
       scopes: {
         // 定义全局作用域，使用方法如: .scope('onlyTrashed') or .scope('onlyTrashed1', 'onlyTrashed12') [ 多个作用域 ]

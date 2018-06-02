@@ -28,6 +28,10 @@ export default function Admin(app: Application) {
       adminConfig,
     );
 
+  modelSchema.BelongOwnerById = async function BelongOwnerById(userId, id) {
+      return parseInt(userId, 10) === parseInt(id, 10);
+    }
+
     /**
      * Normalize the credentials
      * @param {Object} credentials The credential object
@@ -115,7 +119,8 @@ export default function Admin(app: Application) {
         const accessToken = await accessTokenModel.create({
           ttl,
           token,
-          userId: instance.id,
+          adminId: instance.id,
+          scope: accessTokenModel.ScopeAdmin,
         });
         return accessToken;
       };
