@@ -1,6 +1,5 @@
 
 type User {
   id: String!
-  password: String!
   username: String!
 }
