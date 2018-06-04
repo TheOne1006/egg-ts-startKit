@@ -7,7 +7,7 @@
     "typescript": true
   },
   "scripts": {
-    "start-js": "DEBUG='*' egg-scripts start --title=egg-ts-startkit",
+    "start-pro": "egg-scripts start --title=egg-ts-startkit",
     "start": "egg-scripts start --daemon --title=egg-ts-startkit",
     "stop": "egg-scripts stop --title=egg-ts-startkit",
     "dev": "DEBUG='egg-connector-remote:accessContext:acl' egg-bin dev -r egg-ts-helper/register",
