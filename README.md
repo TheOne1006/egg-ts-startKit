@@ -31,11 +31,3 @@ $ npm start
 
 - Node.js 8.x
 - Typescript 2.8+
-
-
-### feature
-
-1. typescript
-2. acl
-3. restful/swagger
-4. graphql
